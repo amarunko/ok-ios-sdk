@@ -292,7 +292,7 @@ typedef void (^OKCompletitionHander)(id data, NSError *error);
         return errorBlock([OKConnection sdkError:OKSDKErrorCodeNotAuthorized format:@"No access_token defined you should invoke authorizeWithPermissions first"]);
     }
     NSMutableDictionary *arguments = [[NSMutableDictionary alloc] initWithDictionary:methodParams];
-    [arguments setValuesForKeysWithDictionary:@{@"application_key":self.settings.appKey, @"method":method, @"format":@"json", @"platform":@"IOS"}];
+    [arguments setValuesForKeysWithDictionary:@{@"application_key":self.settings.appKey, @"method":method, @"format":@"json"}];
     NSString* queryString = signedMethod?[arguments ok_queryStringWithSignature:self.accessTokenSecretKey sigName:@"sig"]:[arguments ok_queryString];
     NSString* url = sessionMethod?[NSString stringWithFormat:@"%@%@access_token=%@",OK_API_URL,queryString,self.accessToken]:[NSString stringWithFormat:@"%@%@",OK_API_URL,queryString];
     NSMutableURLRequest *request = [NSMutableURLRequest
